@@ -45,20 +45,51 @@
         ></q-input>
       </div>
     </div>
-
+    <q-btn
+      class="q-ma-lg"
+      @click="register"
+      color="red"
+      icon="mail"
+      icon-right="send"
+      label="Register"
+    />
   </q-page>
 </template>
 
 <script setup>
-import { reactive, Ref } from 'vue';
-
-
+import { Notify } from 'quasar'
+import { api } from 'src/boot/axios'
+import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const form = reactive({
-  name : null,
-  phone : null,
-  password : null,
-  confirmpassword : null,
+  name: null,
+  phone: null,
+  password: null,
+  confirmpassword: null,
 })
-const isPwd = Ref(true)
+const isPwd = ref(true)
+const router = useRouter()
+
+function register() {
+  api
+    .post('api/register', form)
+    .then((r) => {
+      console.log(r.data)
+      Notify.create({
+        type: 'positive',
+        position: 'top',
+        message: 'User register successfuly',
+      })
+      router.push('login')
+    })
+    .catch((e) => {
+      console.log(e)
+      Notify.create({
+        type: 'negative',
+        position: 'top',
+        message: 'User register successfuly',
+      })
+    })
+}
 </script>
