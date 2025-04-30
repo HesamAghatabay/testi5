@@ -16,7 +16,10 @@
         <q-route-tab to="/" label="Index" />
         <q-route-tab to="/category" label="Category" />
         <q-route-tab to="/post" label="Post" />
+        <q-route-tab to="/register" label="Register" />
+        <q-route-tab to="/login" label="Login" />
       </q-tabs>
+
     </q-header>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
@@ -30,9 +33,9 @@
     <q-footer elevated class="bg-grey-8 text-white">
       <q-toolbar>
         <q-toolbar-title>
-          <q-avatar>
+          <!-- <q-avatar>
             <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
-          </q-avatar>
+          </q-avatar> -->
           <div>Title</div>
         </q-toolbar-title>
       </q-toolbar>

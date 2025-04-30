@@ -6,6 +6,10 @@ const routes = [
       { path: '/', component: () => import('pages/IndexPage.vue') },
       { path: '/category', component: () => import('pages/CategoryPage.vue') },
       { path: '/post', component: () => import('pages/PostPage.vue') },
+      { path: '/register', component: () => import('pages/RegisterPage.vue') },
+      { path: '/login', component: () => import('pages/LoginPage.vue') },
+      { path: '/sendverify', component: () => import('pages/SendVerify.vue') },
+      { path: '/confirmlogin', component: () => import('pages/ConfirmLogin.vue') },
     ],
   },
 

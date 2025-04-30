@@ -1,6 +1,7 @@
 <template>
   <q-page padding>
-    <h4>Index Page</h4>
+    <!-- content -->
+     <h4>Confirm Login</h4>
   </q-page>
 </template>
 
