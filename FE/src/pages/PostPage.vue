@@ -1,6 +1,8 @@
 <template>
-  <q-page class="flex flex-center">
-    <h4>Index Page</h4>
+  <q-page padding>
+    <!-- content -->
+    <h4>Post Page</h4>
+
   </q-page>
 </template>
 
