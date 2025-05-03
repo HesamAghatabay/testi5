@@ -18,7 +18,7 @@
         <q-input
           standout="bg-teal text-white"
           v-model="form.password"
-          label="Enter Phone"
+          label="Enter password"
           :type="isPwd ? 'password' : 'text'"
         >
           <template v-slot:append>
@@ -34,13 +34,13 @@
         <q-input
           standout="bg-teal text-white"
           v-model="form.confirmpassword"
-          label="Enter Phone"
-          :type="isPwd ? 'password' : 'text'"
+          label="Enter confirmpassword"
+          :type="isPwdc ? 'password' : 'text'"
           ><template v-slot:append>
             <q-icon
-              :name="isPwd ? 'visibility_off' : 'visibility'"
+              :name="isPwdc ? 'visibility_off' : 'visibility'"
               class="cursor-pointer"
-              @click="isPwd = !isPwd"
+              @click="isPwdc = !isPwdc"
             /> </template
         ></q-input>
       </div>
@@ -69,6 +69,7 @@ const form = reactive({
   confirmpassword: null,
 })
 const isPwd = ref(true)
+const isPwdc = ref(true)
 const router = useRouter()
 
 function register() {
