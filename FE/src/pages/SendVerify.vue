@@ -13,6 +13,7 @@
 </template>
 
 <script setup>
+import { Notify } from 'quasar'
 import { api } from 'src/boot/axios'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -28,11 +29,21 @@ function sendsms() {
     .then((r) => {
       console.log(r.data.status)
       router.push('confirmlogin/' + phone.value)
-      alert('send successfully')
+      Notify.create({
+        type: 'positive',
+        position: 'top',
+        message: 'SMS with new password send successfuly',
+      })
+      // alert('send successfully')
     })
     .catch((e) => {
       console.log(e)
-      alert('we have error in catch')
+      Notify.create({
+        type: 'negative',
+        position: 'top',
+        message: 'we have error in catch',
+      })
+      // alert('we have error in catch')
     })
 }
 </script>

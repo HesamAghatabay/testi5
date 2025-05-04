@@ -16,10 +16,11 @@
 import { Notify } from 'quasar'
 import { api } from 'src/boot/axios'
 import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const password = ref('')
 const route = useRoute()
+const router = useRouter()
 
 function login() {
   api
@@ -27,11 +28,12 @@ function login() {
       grant_type: 'password',
       client_id: 2,
       client_secret: 'vYRFXpOqBMeMZrHdG35aZVRdDDCiwX001IJMT9M3',
-      username: route.params,
+      username: route.params.phone,
       password: password.value,
       scope: '*',
     })
     .then((r) => {
+      router.push('/')
       console.log(r.data)
       Notify.create({
         type: 'positive',
