@@ -45,14 +45,16 @@
         ></q-input>
       </div>
     </div>
-    <q-btn
-      class="q-ma-lg"
-      @click="register"
-      color="red"
-      icon="mail"
-      icon-right="send"
-      label="Register"
-    />
+    <div>
+      <q-btn
+        class="q-ma-lg"
+        @click="register"
+        color="red"
+        icon="mail"
+        icon-right="send"
+        label="Register"
+      />
+    </div>
   </q-page>
 </template>
 

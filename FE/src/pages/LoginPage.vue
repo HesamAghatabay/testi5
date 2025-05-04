@@ -24,6 +24,7 @@
       </div>
     </div>
     <q-btn class="q-ma-lg" @click="login" color="red" icon="mail" icon-right="send" label="Login" />
+    <q-btn color="blue-8" @click="$router.push('sendverify')">Forget password</q-btn>
   </q-page>
 </template>
 

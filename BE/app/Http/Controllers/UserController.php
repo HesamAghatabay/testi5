@@ -22,4 +22,28 @@ class UserController extends Controller
         ]);
         return response()->json([$user, 201]);
     }
+
+    function sendverify(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|max:50'
+        ]);
+        $code = rand(10000000, 99999999);
+        if ($user = User::where('phone', $request->username)->first()) {
+            $user->password = Hash::make($code);
+            $user->save();
+        } else {
+            $user = User::create([
+                'name' => '',
+                'phone' => $request->username,
+                'password' => Hash::make($code),
+            ]);
+        }
+        // $user->sendVerifyCode($code, $request->username);
+        if ($user->sendVerifyCode($code, $request->username)) {
+            return response()->json(['status' => true], 200);
+        } else {
+            return response()->json(['status' => false], 400);
+        }
+    }
 }

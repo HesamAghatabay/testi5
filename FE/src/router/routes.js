@@ -9,7 +9,7 @@ const routes = [
       { path: '/register', component: () => import('pages/RegisterPage.vue') },
       { path: '/login', component: () => import('pages/LoginPage.vue') },
       { path: '/sendverify', component: () => import('pages/SendVerify.vue') },
-      { path: '/confirmlogin', component: () => import('pages/ConfirmLogin.vue') },
+      { path: '/confirmlogin/:phone', component: () => import('pages/ConfirmLogin.vue') },
     ],
   },
 
