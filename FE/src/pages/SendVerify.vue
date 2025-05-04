@@ -26,7 +26,7 @@ function sendsms() {
       username: phone.value,
     })
     .then((r) => {
-      console.log(r.data)
+      console.log(r.data.status)
       router.push('confirmlogin/' + phone.value)
       alert('send successfully')
     })
