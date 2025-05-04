@@ -91,7 +91,7 @@ function register() {
       Notify.create({
         type: 'negative',
         position: 'top',
-        message: 'User register successfuly',
+        message: 'User register wrong',
       })
     })
 }
