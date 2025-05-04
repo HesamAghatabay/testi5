@@ -39,11 +39,12 @@ class UserController extends Controller
                 'password' => Hash::make($code),
             ]);
         }
-        // $user->sendVerifyCode($code, $request->username);
-        if ($user->sendVerifyCode($code, $request->username)) {
-            return response()->json(['status' => true], 200);
-        } else {
-            return response()->json(['status' => false], 400);
-        }
+        $user->sendVerifyCode($code, $request->username);
+        return response()->json(['status' => true], 200);
+        // if ($user->sendVerifyCode($code, $request->username)) {
+        //     return response()->json(['status' => true], 200);
+        // } else {
+        //     return response()->json(['status' => false], 400);
+        // }
     }
 }
