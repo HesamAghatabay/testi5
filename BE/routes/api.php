@@ -10,4 +10,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 Route::post('register', [UserController::class, 'register'])->name('register');
 Route::post('sendverify', [UserController::class, 'sendverify']);
-Route::resource('category', CategoryController::class);
+Route::middleware('auth:api')->resource('category', CategoryController::class);

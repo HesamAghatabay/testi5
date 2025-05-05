@@ -35,6 +35,7 @@ class CategoryController extends Controller
         $category = category::create([
             'name' => $request->name,
             'body' => $request->body,
+            'user_id' => $request->user()->id,
         ]);
         return response()->json([$category], 201);
     }
