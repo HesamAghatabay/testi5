@@ -10,6 +10,7 @@ const routes = [
       { path: '/login', component: () => import('pages/LoginPage.vue') },
       { path: '/sendverify', component: () => import('pages/SendVerify.vue') },
       { path: '/confirmlogin/:phone', component: () => import('pages/ConfirmLogin.vue') },
+      { path: '/create-category', component: () => import('pages/CreateCategory.vue') },
     ],
   },
 
