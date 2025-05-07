@@ -47,4 +47,10 @@ class UserController extends Controller
         //     return response()->json(['status' => false], 400);
         // }
     }
+
+    public function user(Request $request)
+    {
+        $user = $request->user();
+        return response()->json($user, 200);
+    }
 }

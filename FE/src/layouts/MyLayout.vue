@@ -18,6 +18,7 @@
         <q-route-tab to="/post" label="Post" />
         <q-route-tab to="/register" label="Register" />
         <q-route-tab to="/login" label="Login" />
+        <q-route-tab to="/profile" label="Profile" />
       </q-tabs>
 
     </q-header>
