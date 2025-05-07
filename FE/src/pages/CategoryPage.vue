@@ -6,7 +6,7 @@
     <q-btn @click="$router.push('create-category')">Create Category</q-btn>
     <div class="row q-mt-md">
       <div class="col-3" v-for="(category, index) in categories" :key="'category' + index">
-        <p>{{ category?.name || 'ss' }}</p>
+        <!-- <p>{{ category?.name || 'ss' }}</p> -->
         <q-card
           class="my-card text-white"
           style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)"
@@ -15,6 +15,16 @@
             <div class="text-h6">{{ category?.name || 'error name' }}</div>
             <div class="text-subtitle2">{{ category?.body || 'error body' }}</div>
           </q-card-section>
+          <q-card-actions>
+            <q-btn
+              @click="
+                ((categoryData.currentCategory = index),
+                $router.push('edit-category/' + category.id))
+              "
+              >Edit</q-btn
+            >
+            <q-btn>Delete</q-btn>
+          </q-card-actions>
         </q-card>
       </div>
     </div>
@@ -23,18 +33,21 @@
 
 <script setup>
 import { api } from 'src/boot/axios'
+import { useCategoryData } from 'src/stores/CatagoryData'
 import { onMounted, ref } from 'vue'
 
 const categories = ref([])
 const loading = ref(false)
+const categoryData = useCategoryData()
 onMounted(() => {
   loading.value = true
   api
     .get('api/category')
     .then((r) => {
-      console.log('myCategory', r.data)
+      // console.log('myCategory', r.data)
+      // console.log("Categories received:", categories.value);
       categories.value = r.data
-      console.log("Categories received:", categories.value);
+      categoryData.catagory = r.data
     })
     .catch((e) => {
       console.log(e)
