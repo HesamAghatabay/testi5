@@ -18,7 +18,7 @@
         />
       </div>
     </div>
-    <q-btn @click="create">Create</q-btn>
+    <q-btn @click="edit">Edit</q-btn>
   </q-page>
 </template>
 
@@ -36,47 +36,43 @@ const category = reactive({
   body: null,
 })
 const categoryData = useCategoryData()
-onMounted(()=>{
-  if(categoryData.currentCategory.length>0){
-    category.name = categoryData.currentCategory.name,
-    category.body = categoryData.currentCategory.body
-  }else{
+onMounted(() => {
+  if (categoryData.currentCategory.length > 0) {
+    ;(category.name = categoryData.currentCategory.name),
+      (category.body = categoryData.currentCategory.body)
+  } else {
     fetchcategory()
   }
 })
-function fetchcategory(){
-  api.get('api/category'+route.params.id)
-}
-
-
-
-
-function create() {
-  if (!category.name.value || !category.body.value) {
-    api
-      .post('api/category', category)
-      .then(() => {
-        router.push('/')
-        Notify.create({
-          type: 'positive',
-          position: 'top',
-          message: 'category created successfuly',
-        })
-      })
-      .catch((e) => {
-        Notify.create({
-          type: 'negative',
-          position: 'top',
-          message: 'we have error in catch',
-        })
-        console.log(e)
-      })
-  } else {
-    Notify.create({
-      type: 'negative',
-      position: 'top',
-      message: 'please poring all filds',
+function fetchcategory() {
+  api
+    .get('api/category/' + route.params.id)
+    .then((r) => {
+      ;(category.name = r.data.name), (category.body = r.data.body)
     })
-  }
+    .catch((e) => {
+      console.log(e)
+    })
+}
+function edit() {
+  api
+    .put('api/category/' + route.params.id, category)
+    .then((r) => {
+      router.push('category')
+      Notify.create({
+        type: 'positive',
+        position: 'top',
+        message: 'category updated successfuly',
+      })
+      console.log('data', r.date)
+    })
+    .catch((e) => {
+      Notify.create({
+        type: 'negative',
+        position: 'top',
+        message: 'we have error in catch',
+      })
+      console.log(e)
+    })
 }
 </script>

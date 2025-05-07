@@ -46,7 +46,7 @@ class CategoryController extends Controller
      */
     public function show(category $category)
     {
-        //
+        return response()->json($category, 200);
     }
 
     /**
@@ -62,7 +62,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, category $category)
     {
-        //
+        $category->update([
+            'name' => $request->name,
+            'body' => $request->body,
+        ]);
+        if (!$category) {
+            return response()->json(['status' => false], 400);
+        }
+        return response()->json(['status' => true], 200);
     }
 
     /**
