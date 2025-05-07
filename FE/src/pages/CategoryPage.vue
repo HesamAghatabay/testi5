@@ -23,7 +23,7 @@
               "
               >Edit</q-btn
             >
-            <q-btn>Delete</q-btn>
+            <q-btn @click="destroy(category.id)">Delete</q-btn>
           </q-card-actions>
         </q-card>
       </div>
@@ -32,6 +32,7 @@
 </template>
 
 <script setup>
+import { Notify } from 'quasar'
 import { api } from 'src/boot/axios'
 import { useCategoryData } from 'src/stores/CatagoryData'
 import { onMounted, ref } from 'vue'
@@ -59,4 +60,19 @@ onMounted(() => {
       loading.value = false
     })
 })
+function destroy($id) {
+  api
+    .delete('api/category/' + $id)
+    .then((r) => {
+      Notify.create({
+        type: 'positive',
+        position: 'top',
+        message: 'category deleted successfuly',
+      })
+      console.log(r.data)
+    })
+    .catch((e) => {
+      console.log(e)
+    })
+}
 </script>

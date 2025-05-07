@@ -58,7 +58,7 @@ function edit() {
   api
     .put('api/category/' + route.params.id, category)
     .then((r) => {
-      router.push('category')
+      router.push('/category')
       Notify.create({
         type: 'positive',
         position: 'top',
