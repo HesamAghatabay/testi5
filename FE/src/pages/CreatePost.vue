@@ -4,18 +4,14 @@
     <h4>Create Post Page</h4>
     <div class="row q-gutter-sm">
       <div class="col">
-        <q-input v-model="post.name" label="Enter Category Name" standout="bg-teal text-white" />
+        <q-input v-model="post.name" label="Enter post Name" standout="bg-teal text-white" />
       </div>
       <div class="col">
-        <q-input v-model="post.name" label="Enter Category Name" standout="bg-teal text-white" />
+        <q-input v-model="post.body" label="Enter post body" standout="bg-teal text-white" />
       </div>
-      <div class="col">
-        <q-input
-          v-model="post.categoryId"
-          label="Enter Category Name"
-          standout="bg-teal text-white"
-        />
-      </div>
+      <di v class="col">
+        <q-input v-model="post.categoryId" label="Enter categoryId" standout="bg-teal text-white" />
+      </di>
     </div>
     <q-btn @click="create">Create</q-btn>
   </q-page>
@@ -25,7 +21,9 @@
 import { Notify } from 'quasar'
 import { api } from 'src/boot/axios'
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const post = reactive({
   name: null,
   body: null,
@@ -37,7 +35,8 @@ function create() {
     api
       .post('api/post', post)
       .then((r) => {
-        if (r.data.status === 201) {
+        if (r.status === 201) {
+          router.push('post')
           Notify.create({
             type: 'positive',
             position: 'top',
