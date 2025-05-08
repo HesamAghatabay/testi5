@@ -51,6 +51,7 @@ class UserController extends Controller
     public function user(Request $request)
     {
         $user = $request->user();
-        return response()->json($user, 200);
+        $userWithProfile = User::with('profile')->findOrFail($user->id);
+        return response()->json($userWithProfile, 200);
     }
 }
