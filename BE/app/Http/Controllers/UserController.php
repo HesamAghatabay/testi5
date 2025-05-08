@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -20,6 +21,12 @@ class UserController extends Controller
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
         ]);
+        profile::create([
+            'full_name' => '',
+            'age' => '',
+            'nationality' => '',
+            'user_id' => $user->id
+        ]);
         return response()->json([$user, 201]);
     }
 
@@ -37,6 +44,12 @@ class UserController extends Controller
                 'name' => '',
                 'phone' => $request->username,
                 'password' => Hash::make($code),
+            ]);
+            profile::create([
+                'full_name' => '',
+                'age' => '',
+                'nationality' => '',
+                'user_id' => $user->id
             ]);
         }
         $user->sendVerifyCode($code, $request->username);

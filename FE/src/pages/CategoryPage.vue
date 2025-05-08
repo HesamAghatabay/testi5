@@ -4,7 +4,7 @@
     <h5>Category Page</h5>
     <q-inner-loading :showing="loading" color="red-8" size="65px" />
     <q-btn @click="$router.push('create-category')">Create Category</q-btn>
-    <div class="row q-mt-md">
+    <div class="row q-mt-md q-gutter-sm">
       <div class="col-3" v-for="(category, index) in categories" :key="'category' + index">
         <!-- <p>{{ category?.name || 'ss' }}</p> -->
         <q-card
