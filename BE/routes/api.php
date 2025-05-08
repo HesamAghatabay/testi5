@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -12,3 +13,4 @@ Route::post('register', [UserController::class, 'register'])->name('register');
 Route::post('sendverify', [UserController::class, 'sendverify']);
 Route::middleware('auth:api')->get('/user', [UserController::class, 'user']);
 Route::middleware('auth:api')->resource('category', CategoryController::class);
+Route::middleware('auth:api')->resource('post', PostController::class);

@@ -2,7 +2,7 @@
   <q-page padding>
     <!-- content -->
     <h4>Post Page</h4>
-    <q-btn @click="$router.push('create_post')">Create New Post</q-btn>
+    <q-btn @click="$router.push('create-post')">Create New Post</q-btn>
     <div class="row q-mt-md q-gutter-sm">
       <div class="col-3">
         <q-card

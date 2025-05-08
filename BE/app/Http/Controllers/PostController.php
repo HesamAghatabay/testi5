@@ -28,7 +28,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = post::create([
+            'name' => $request->name,
+            'body' => $request->body,
+            'user_id' => $request->user()->id,
+            'category_id' => $request->categoryId
+        ]);
+        return response()->json(['post' => $post, 'messg' => 'post created'], 201);
     }
 
     /**
