@@ -16,7 +16,9 @@
             <div class="text-subtitle2">{{ post?.body || 'no body' }}</div>
           </q-card-section>
           <q-card-actions>
-            <q-btn>Edit</q-btn>
+            <q-btn @click="($router.push('edit-post/' + post.id), (PostData.currentPost = index))"
+              >Edit</q-btn
+            >
             <q-btn>Delete</q-btn>
           </q-card-actions>
         </q-card>
@@ -27,8 +29,10 @@
 
 <script setup>
 import { api } from 'src/boot/axios'
+import { usePostData } from 'src/stores/PostData'
 import { onMounted, ref } from 'vue'
 
+const PostData = usePostData()
 const loading = ref(false)
 // const posts = reactive({
 //   name: null,

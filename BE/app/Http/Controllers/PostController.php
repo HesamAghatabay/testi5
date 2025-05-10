@@ -29,6 +29,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'body' => 'required'
+        ]);
         $post = post::create([
             'name' => $request->name,
             'body' => $request->body,
@@ -59,7 +63,15 @@ class PostController extends Controller
      */
     public function update(Request $request, post $post)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'body' => 'required'
+        ]);
+        $upost = $post->update([
+            'name' => $request->name,
+            'body' => $request->body
+        ]);
+        return response()->json($upost, 200);
     }
 
     /**
