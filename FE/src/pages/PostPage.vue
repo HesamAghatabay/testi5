@@ -19,7 +19,7 @@
             <q-btn @click="($router.push('edit-post/' + post.id), (PostData.currentPost = index))"
               >Edit</q-btn
             >
-            <q-btn>Delete</q-btn>
+            <q-btn @click="destroy(post.id)">Delete</q-btn>
           </q-card-actions>
         </q-card>
       </div>
@@ -28,6 +28,7 @@
 </template>
 
 <script setup>
+import { Notify } from 'quasar'
 import { api } from 'src/boot/axios'
 import { usePostData } from 'src/stores/PostData'
 import { onMounted, ref } from 'vue'
@@ -54,4 +55,20 @@ onMounted(() => {
       loading.value = false
     })
 })
+function destroy($id) {
+  api
+    .delete('api/post/' + $id)
+    .then((r) => {
+      if (r.status == 200) {
+        Notify.create({
+          type: 'positive',
+          position: 'top',
+          message: 'post deleted successfuly',
+        })
+      }
+    })
+    .catch((e) => {
+      console.error(e)
+    })
+}
 </script>
