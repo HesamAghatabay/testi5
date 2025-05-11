@@ -8,7 +8,7 @@
     <div class="row q-mt-md q-gutter-sm">
       <div class="col-3" v-for="(post, index) in posts" :key="'post' + index">
         <q-card
-          @click="showPost(post.id)"
+          @click="$router.push('show-post/' + post.id)"
           class="my-card text-white"
           style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)"
         >
@@ -33,9 +33,9 @@ import { Notify } from 'quasar'
 import { api } from 'src/boot/axios'
 import { usePostData } from 'src/stores/PostData'
 import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 
-const router = useRouter()
+// const router = useRouter()
 const PostData = usePostData()
 const loading = ref(false)
 // const posts = reactive({
@@ -58,18 +58,6 @@ onMounted(() => {
       loading.value = false
     })
 })
-
-function showPost($id) {
-  PostData.currentPost = $id
-  api
-    .get('api/post/' + $id)
-    .then(() => {
-      router.push('show-post/' + $id)
-    })
-    .catch((e) => {
-      console.error(e)
-    })
-}
 
 function destroy($id) {
   api

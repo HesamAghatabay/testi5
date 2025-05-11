@@ -45,8 +45,9 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(post $post)
+    public function show($id)
     {
+        $post = post::findOrFail($id);
         return response()->json($post, 200);
     }
 
