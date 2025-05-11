@@ -47,7 +47,7 @@ class PostController extends Controller
      */
     public function show(post $post)
     {
-        //
+        return response()->json($post, 200);
     }
 
     /**
@@ -80,6 +80,6 @@ class PostController extends Controller
     public function destroy(post $post)
     {
         $post->delete();
-        return response()->json(['mssg' => 'post deleted'],200);
+        return response()->json(['mssg' => 'post deleted'], 200);
     }
 }

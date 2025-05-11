@@ -15,6 +15,7 @@ const routes = [
       { path: '/edit-category/:id', component: () => import('pages/EditCategory.vue') },
       { path: '/create-post', component: () => import('pages/CreatePost.vue') },
       { path: '/edit-post/:id', component: () => import('pages/EditPost.vue') },
+      { path: '/show-post/:id', component: () => import('pages/ShowPost.vue') },
     ],
   },
 
