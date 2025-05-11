@@ -5,7 +5,8 @@
     <q-inner-loading :showing="loading" color="red-8" size="65px" />
     <p>{{ user?.name || 'No name' }}</p>
     <p>{{ user?.profile?.full_name || 'No full_name' }}</p>
-    <!-- <p>{{ profile?.id || 'No full_name' }}</p> -->
+    <p>{{ user?.profile?.age || 'No age' }}</p>
+    <p>{{ user?.profile?.nationality || 'No nationality' }}</p>
   </q-page>
 </template>
 
