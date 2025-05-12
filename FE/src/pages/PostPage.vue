@@ -63,8 +63,31 @@ onMounted(() => {
     })
 })
 
-function like(index){
-  api.post()
+function like(index) {
+  const postId = posts.value[index].id
+  api
+    .post('api/post/' + postId + '/like', {
+      liked: true,
+    })
+    .then(() => {
+      posts.value[index].liked = true
+    })
+    .catch((e) => {
+      console.error(e)
+    })
+}
+function unlike(index) {
+  const postId = posts.value[index].id
+  api
+    .post('api/post/' + postId + '/unlike', {
+      liked: true,
+    })
+    .then(() => {
+      posts.value[index].liked = false
+    })
+    .catch((e) => {
+      console.error(e)
+    })
 }
 
 function destroy($id) {
