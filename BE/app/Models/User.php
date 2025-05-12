@@ -70,6 +70,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(post::class);
     }
+    public function likes()
+    {
+        return $this->belongsToMany(post::class);
+    }
     public function sendVerifyCode($code, $username)
     {
         $client = new \GuzzleHttp\Client([
