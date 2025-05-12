@@ -12,7 +12,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = post::all();
+        $posts = post::where('user_id', '!=', null)->with('user','likes')->get();
         return response()->json($posts, 200);
     }
 

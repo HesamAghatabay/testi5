@@ -8,11 +8,10 @@
     <div class="row q-mt-md q-gutter-sm">
       <div class="col-3" v-for="(post, index) in posts" :key="'post' + index">
         <q-card
-          @click="$router.push('show-post/' + post.id)"
           class="my-card text-white"
           style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)"
         >
-          <q-card-section>
+          <q-card-section @click="$router.push('show-post/' + post.id)">
             <div class="text-h6">{{ post?.name || 'no name' }}</div>
             <div class="text-subtitle2">{{ post?.body || 'no body' }}</div>
           </q-card-section>
@@ -21,6 +20,10 @@
               >Edit</q-btn
             >
             <q-btn @click="destroy(post.id)">Delete</q-btn>
+            <div>
+              <q-btn v-if="post.likes.length > 0" @click="unlike(index)">unlike</q-btn>
+              <q-btn v-else @click="like(index)">like</q-btn>
+            </div>
           </q-card-actions>
         </q-card>
       </div>
@@ -42,6 +45,7 @@ const loading = ref(false)
 //   name: null,
 //   body: null,
 // })
+// const likeCount = ref()
 const posts = ref([])
 onMounted(() => {
   loading.value = true
@@ -58,6 +62,10 @@ onMounted(() => {
       loading.value = false
     })
 })
+
+function like(index){
+  api.post()
+}
 
 function destroy($id) {
   api
