@@ -8,5 +8,5 @@ use Illuminate\Support\Facades\DB;
 
 class LikeController extends Controller
 {
-//
+    //
 }

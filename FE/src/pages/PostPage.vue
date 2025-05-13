@@ -21,9 +21,24 @@
             >
             <q-btn @click="destroy(post.id)">Delete</q-btn>
             <div>
-              <q-btn v-if="post.likes.length > 0" @click="unlike(index)">unlike</q-btn>
-              <q-btn v-else @click="like(index)">like</q-btn>
+              <q-btn @click="unlike(index)">👎</q-btn>
+              <q-btn @click="like(index)">👍</q-btn>
+              <span>{{ post.likes.length }}</span>
             </div>
+            <!-- <div class="like-button">
+              <q-btn
+                unelevated
+                :color="post.liked ? 'red' : 'grey-6'"
+                text-color="white"
+                :loading="post.loading"
+                @click="toggleLike(index)"
+                padding="sm"
+                no-caps
+              >
+                <q-icon name="favorite" :color="post.liked ? 'white' : 'grey-8'" />
+                <span class="q-ml-xs">{{ post.likes_count }}</span>
+              </q-btn>
+            </div> -->
           </q-card-actions>
         </q-card>
       </div>
@@ -63,14 +78,39 @@ onMounted(() => {
     })
 })
 
+// function toggleLike(index) {
+//   const post = posts.value[index]
+//   const postId = post.id
+//   const isLiked = post.liked
+
+//   const url = isLiked ? `/api/post/${postId}/unlike` : `/api/post/${postId}/like`
+
+//   post.loading = true
+
+//   api
+//     .post(url)
+//     .then(() => {
+//       // روش ۱: اگر API فقط وضعیت رو برمیگردونه
+//       post.liked = !isLiked
+//       post.likes_count = isLiked ? post.likes_count - 1 : post.likes_count + 1
+
+//       // روش ۲: اگر API count رو برمیگردونه
+//       // post.likes_count = res.data.count
+//     })
+//     .catch((e) => {
+//       console.error('Toggle failed:', e)
+//     })
+//     .finally(() => {
+//       post.loading = false
+//     })
+// }
+
 function like(index) {
   const postId = posts.value[index].id
   api
-    .post('api/post/' + postId + '/like', {
-      liked: true,
-    })
-    .then(() => {
-      posts.value[index].liked = true
+    .post('api/post/' + postId + '/like')
+    .then((r) => {
+      console.log(r.data)
     })
     .catch((e) => {
       console.error(e)
@@ -79,11 +119,9 @@ function like(index) {
 function unlike(index) {
   const postId = posts.value[index].id
   api
-    .post('api/post/' + postId + '/unlike', {
-      liked: true,
-    })
-    .then(() => {
-      posts.value[index].liked = false
+    .post('api/post/' + postId + '/unlike')
+    .then((r) => {
+      console.log(r.data)
     })
     .catch((e) => {
       console.error(e)

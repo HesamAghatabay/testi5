@@ -16,15 +16,17 @@ Route::post('sendverify', [UserController::class, 'sendverify']);
 Route::middleware('auth:api')->get('/user', [UserController::class, 'user']);
 Route::middleware('auth:api')->resource('category', CategoryController::class);
 Route::middleware('auth:api')->resource('post', PostController::class);
+
 Route::middleware('auth:api')->post('post/{id}/like', function (Request $request, $id) {
     $post = post::find($id);
     $user = $request->user();
-    $post->likes()->sync(['user_id']);
+    $post->likes()->sync($user->id);
     return response()->json(['status' => true]);
 });
+
 Route::middleware('auth:api')->post('post/{id}/unlike', function (Request $request, $id) {
     $post = post::find($id);
     $user = $request->user();
-    $post->likes()->detach(['user_id']);
+    $post->likes()->detach($user->id);
     return response()->json(['status' => true]);
 });
