@@ -27,8 +27,8 @@
             </div> -->
             <div>
               <q-btn
-                @click="post.likes.length ? unlike(index) : like(index)"
-                :color="post.likes.length ? 'blue-5' : 'grey-6'"
+                @click="post.liked ? unlike(index) : like(index)"
+                :color="post.liked ? 'blue-5' : 'grey-6'"
               >
                 <q-icon name="favorite" :color="post.likes.length ? 'red' : 'grey-8'" />
                 <span>{{ post.likes.length }}</span>

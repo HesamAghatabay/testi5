@@ -10,10 +10,18 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = post::where('user_id', '!=', null)->with('user','likes')->get();
-        return response()->json($posts, 200);
+        $posts = post::where('user_id', '!=', null)->with('user', 'likes')->get();
+        foreach ($posts as $post) {
+            foreach ($post->likes as $like) {
+                if ($request->user()->id == $like->pivot->user_id) {
+                    $post->like = true;
+                }
+            }
+        }
+        return $posts;
+        // return response()->json($posts, 200);
     }
 
     /**
