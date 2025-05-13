@@ -20,10 +20,19 @@
               >Edit</q-btn
             >
             <q-btn @click="destroy(post.id)">Delete</q-btn>
-            <div>
+            <!-- <div>
               <q-btn @click="unlike(index)">👎</q-btn>
               <q-btn @click="like(index)">👍</q-btn>
               <span>{{ post.likes.length }}</span>
+            </div> -->
+            <div>
+              <q-btn
+                @click="post.likes.length ? unlike(index) : like(index)"
+                :color="post.likes.length ? 'blue-5' : 'grey-6'"
+              >
+                <q-icon name="favorite" :color="post.likes.length ? 'red' : 'grey-8'" />
+                <span>{{ post.likes.length }}</span>
+              </q-btn>
             </div>
             <!-- <div class="like-button">
               <q-btn
@@ -103,6 +112,10 @@ onMounted(() => {
 //     .finally(() => {
 //       post.loading = false
 //     })
+// }
+
+// function togglelike(index) {
+//   const postId = posts.value[index].id
 // }
 
 function like(index) {
