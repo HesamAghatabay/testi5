@@ -15,13 +15,13 @@ class PostController extends Controller
         $posts = post::where('user_id', '!=', null)->with('user', 'likes')->get();
         foreach ($posts as $post) {
             foreach ($post->likes as $like) {
-                if ($request->user()->id == $like->pivot->user_id) {
-                    $post->like = true;
+                if ($like->pivot->user_id == $request->user()->id) {
+                    $post->status = true;
                 }
             }
         }
-        return $posts;
-        // return response()->json($posts, 200);
+        return response()->json($posts, 200);
+        // return $posts;
     }
 
     /**
