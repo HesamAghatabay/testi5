@@ -77,6 +77,7 @@ onMounted(() => {
     .get('api/post')
     .then((r) => {
       posts.value = r.data
+
       // ;(posts.name = r.data.name), (posts.body = r.data.body)
     })
     .catch((e) => {
@@ -124,6 +125,24 @@ function like(index) {
     .post('api/post/' + postId + '/like')
     .then((r) => {
       console.log(r.data)
+      if(r.data.status){
+         posts.value[index].likes.push(
+             {
+                id: 1,
+                name: "Hesam",
+                phone: "0987654321",
+                email: null,
+                email_verified_at: null,
+                created_at: "2025-05-03T18:48:12.000000Z",
+                updated_at: "2025-05-03T18:48:12.000000Z",
+                deleted_at: null,
+                pivot: {
+                    post_id: 2,
+                    user_id: 1
+                }
+              }
+              )
+      }
     })
     .catch((e) => {
       console.error(e)

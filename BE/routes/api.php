@@ -20,13 +20,19 @@ Route::middleware('auth:api')->resource('post', PostController::class);
 Route::middleware('auth:api')->post('post/{id}/like', function (Request $request, $id) {
     $post = post::find($id);
     $user = $request->user();
-    $post->likes()->sync($user->id);
+    if (!$post->likes->contains($user->id)) {
+        $post->likes()->attach($user->id);
+
+    }
+    // $post->likes()->attach($user->id);
     return response()->json(['status' => true]);
 });
 
 Route::middleware('auth:api')->post('post/{id}/unlike', function (Request $request, $id) {
     $post = post::find($id);
     $user = $request->user();
-    $post->likes()->detach($user->id);
+    // if ($post->likes->contains($user->id)) {
+        $post->likes()->detach($user->id);
+    // }
     return response()->json(['status' => true]);
 });
